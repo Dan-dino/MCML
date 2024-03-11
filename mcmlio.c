@@ -892,7 +892,7 @@ void WriteInParm(FILE *file, InputStruct In_Parm)
   // snprintf(str, sizeof(str), "%ld", In_Parm.num_photons);
   // write(fd, &str, strlen(str));
   // write(fd, "Hi\n", 3);
-  fprintf(file, "LAST #PHOTONS %ld\n", In_Parm.num_photons);
+  // fprintf(file, "LAST #PHOTONS %ld\n", In_Parm.num_photons);
   fprintf(file, 
 	"%ld \t\t\t# No. of photons\n", In_Parm.num_photons);
   
@@ -927,6 +927,13 @@ void WriteRAT(FILE * file, OutStruct Out_Parm)
   fprintf(file, 
 	"RAT #Reflectance, absorption, transmission. \n");
 	/* flag. */
+
+  // int fd = open ("CHECK.txt", O_RDWR | O_CREAT, 777);
+  // char *str = (char *)malloc(10000000 + 1);
+  // sprintf(str, "%f",  Out_Parm.Rsp);
+  // snprintf(str, 10000000 + 1, "%f", Out_Parm.Rsp);
+  // write(fd, &str, strlen(str));
+  // write(fd, "Hello\n", 6);
 
   fprintf(file, 
 	"%-14.6G \t#Specular reflectance [-]\n", Out_Parm.Rsp);
@@ -1145,7 +1152,8 @@ void WriteResult(InputStruct In_Parm,
 {
   FILE *file;
   
-  file = fopen(In_Parm.out_fname, "w");
+  file = fopen(In_Parm.out_fname, "w+");
+  printf("the file name is  ---> %s\n", In_Parm.out_fname);
   if(file == NULL) nrerror("Cannot open file to write.\n");
   
   if(toupper(In_Parm.out_fformat) == 'A') 

@@ -29,6 +29,7 @@ void nrerror(char error_text[])
  *	don't initialize the elements to zero. This will
  *	be accomplished by the following functions. 
  ****/
+
 double *AllocVector(short nl, short nh)
 {
   double *v;
@@ -36,8 +37,10 @@ double *AllocVector(short nl, short nh)
   
   v=(double *)malloc((unsigned) (nh-nl+1)*sizeof(double));
   if (!v) nrerror("allocation failure in vector()");
-  
-  v -= nl;
+  // DOUBLE CHECK
+
+  // v -= nl;
+  printf("NL IS: ---> %d\n", nl);
   for(i=nl;i<=nh;i++) v[i] = 0.0;	/* init. */
   return v;
 }

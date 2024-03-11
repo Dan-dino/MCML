@@ -19,5 +19,4 @@ global PLOTON PRINTON
 
 PLOTON = 1; PRINTON = 0;
 
-getmcml('0.01.mco')
-
+getmcml('Glucose940Try2.mco')

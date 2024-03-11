@@ -200,7 +200,7 @@ char main(int argc, char *argv[])
   num_runs = ReadNumRuns(input_file_ptr);
   printf("done\n");	
   // printf(">>>>>>>>>>>>>%d\n", num_runs);
-  num_runs = 2;
+  num_runs = 3;
   while(num_runs--)  {
     ReadParm(input_file_ptr, &in_parm);
 	DoOneRun(num_runs, &in_parm);

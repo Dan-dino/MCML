@@ -1,5 +1,5 @@
 ##########################################
-# Sample.mci
+# Sample2.mci
 # 	A template for input files for MCML.
 #	Any characters following a # are ignored as comments
 #	Space lines are also ignored.
@@ -28,22 +28,20 @@ sample.mco 	A            	# output file name, ASCII.
 #
 #### SPECIFY DATA FOR RUN 2
 #InParm                    	# Input parameters. cm is used.
-Glucose940.mco 	A            	# output file name, ASCII.
+Glucose940Try2.mco 	A            	# output file name, ASCII.
 1000000                  	# No. of photons
 0.01	0.01               	# dz, dr [cm]
 40	50	1                	# No. of dz, dr, da.
-#
-3                        	# Number of layers
+9                        	# Number of layers
 #n	    mua        	mus	    g	    d       # One line for each layer
 1                         	                # n for medium above
-1.5 	0.071966	100	    0.86    0.1    	# Stratum Corneum
-1.34	0.850378	45  	0.8     0.1   	# Epidermis
-1.4 	0.050994	30  	0.9 	0.2  	# Papillary Dermis
-1.39    0.213867	35  	0.95	0.1    	# Uppen net blood dermis
-1.4	    0.054899	25  	0.8     0.01   	# Reticular dermis
-1.38	0.092035	30  	0.5 	0.2  	# Deep blood net dermis
-1.37	0.092035	11.757	0.8	    0.1    	# Subcutaneous fat
-1.37	0.030142	8.52  	0.5 	0.2  	# Muscle
-1.37	0.1004  	31.54	0.92    0.1    	# Bone
-
+1.5 	0.071966	100	    0.86    0.1    	# layer1
+1.34	0.850378	45  	0.8     0.1   	# layer2
+1.4 	0.050994	30  	0.9 	0.2  	# layer3
+1.39    0.213867	35  	0.95	0.1    	# layer4
+1.4	    0.054899	25  	0.8     0.01   	# layer5
+1.38	0.092035	30  	0.5 	0.2  	# layer6
+1.37	0.092035	11.757	0.8	    0.1    	# layer7
+1.37	0.030142	8.52  	0.5 	0.2  	# layer8
+1.37	0.1004  	31.54	0.92    0.1    	# layer9
 1                        	# n for medium below
