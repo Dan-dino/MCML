@@ -221,7 +221,7 @@ char *FindDataLine(FILE *File_Ptr) {
 
     } while (buf[0] == '#' || buf[0] == '\n' || buf[0] == ' ');
     printf("the line is: %s\n", buf);
-    // printf("FINISHED\n");
+    // printf("FINISHEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd\n");
     return buf;  // Return allocated memory pointer
 }
 
@@ -340,6 +340,7 @@ void ReadNumLayers(FILE *File_Ptr, InputStruct *In_Ptr)
   if(buf[0]=='\0') 
 	nrerror("Reading number of layers.\n");
   sscanf(buf, "%hd", &In_Ptr->num_layers);
+  // printf("XXX %d\n", In_Ptr->num_layers);
   if(In_Ptr->num_layers<=0) 
 	nrerror("Nonpositive number of layers.\n");
 }
@@ -441,7 +442,6 @@ void CriticalAngle( short Num_Layers,
 {
   short i=0;
   double n1, n2;
-  
   for(i=1; i<=Num_Layers; i++)  {
     n1 = (*Layerspecs_PP)[i].n;
     n2 = (*Layerspecs_PP)[i-1].n;
@@ -614,6 +614,7 @@ void InitOutputData(InputStruct In_Parm,
   Out_Ptr->Tt_ra = AllocMatrix(0,nr-1,0,na-1);
   Out_Ptr->Tt_r  = AllocVector(0,nr-1);
   Out_Ptr->Tt_a  = AllocVector(0,na-1);
+  // printf("ERRRROR\n");
 }
 
 /***********************************************************

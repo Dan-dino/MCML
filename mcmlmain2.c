@@ -121,7 +121,6 @@ void ReportResult(InputStruct In_Parm, OutStruct Out_Parm)
 
   SumScaleResult(In_Parm, &Out_Parm);
   WriteResult(In_Parm, Out_Parm, time_report);
-  printf("FINISHED WRITING\n");
 }
 
 /***********************************************************
@@ -159,7 +158,7 @@ void DoOneRun(short NumRuns, InputStruct *In_Ptr)
   out_parm.Rsp = Rspecular(In_Ptr->layerspecs);	
   i_photon = num_photons;
   PunchTime(0, "");
-  // printf("NUMBER OF RUNS %hd\n", NumRuns);
+    
   do {
     if(num_photons - i_photon == photon_rep) {
       printf("%ld photons & %hd runs left, ", i_photon, NumRuns);
@@ -167,19 +166,16 @@ void DoOneRun(short NumRuns, InputStruct *In_Ptr)
       photon_rep *= 10;
     }
     LaunchPhoton(out_parm.Rsp, In_Ptr->layerspecs, &photon);
-  printf("ERRRRRRORXXX44\n");
     do  HopDropSpin(In_Ptr, &photon, &out_parm);
     while (!photon.dead);
-  printf("ERRRRRRORXXX33\n");
   } while(--i_photon);
-  printf("YAY\n");
     
 #if THINKCPROFILER
   exit(0);
 #endif
+    
   ReportResult(*In_Ptr, out_parm);
   FreeData(*In_Ptr, &out_parm);
-  printf("YAYzzz\n");
 }
 
 /***********************************************************
@@ -193,22 +189,17 @@ char main(int argc, char *argv[])
   short num_runs;	/* number of independent runs. */
   InputStruct in_parm;
 
-  // ShowVersion("Version 1.2, 1993");
+  ShowVersion("Version 1.2, 1993");
   GetFnameFromArgv(argc, argv, input_filename);
   input_file_ptr = GetFile(input_filename);
-
-  CheckParm(input_file_ptr, &in_parm);
-  
+  CheckParm(input_file_ptr, &in_parm);	
   num_runs = ReadNumRuns(input_file_ptr);
-  printf("done\n");	
-  // printf(">>>>>>>>>>>>>%d\n", num_runs);
-  num_runs = 2;
+  
   while(num_runs--)  {
     ReadParm(input_file_ptr, &in_parm);
 	DoOneRun(num_runs, &in_parm);
   }
-  printf("MUNA\n");
+  
   fclose(input_file_ptr);
-  printf("done\n");
   return(0);
 }

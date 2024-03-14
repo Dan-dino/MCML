@@ -375,7 +375,7 @@ void Drop(InputStruct  *	In_Ptr,
   /* compute array indices. */
   iz = (short)(Photon_Ptr->z/In_Ptr->dz);
   if(iz>In_Ptr->nz-1) iz=In_Ptr->nz-1;
-  
+
   ir = (short)(sqrt(x*x+y*y)/In_Ptr->dr);
   if(ir>In_Ptr->nr-1) ir=In_Ptr->nr-1;
   
@@ -386,7 +386,10 @@ void Drop(InputStruct  *	In_Ptr,
   Photon_Ptr->w -= dwa;
   
   /* assign dwa to the absorption array element. */
+    printf("DROOOOOOOOOOOP\n");
+    printf("PRITING IR IZ: %d       %d     %f\n", ir, iz, dwa);
   Out_Ptr->A_rz[ir][iz]	+= dwa;
+  printf("DROOOOOOOOOOOP2\n");
 }
 
 /***********************************************************
@@ -707,7 +710,7 @@ void HopDropSpinInTissue(InputStruct  *  In_Ptr,
 						 OutStruct    *  Out_Ptr)
 {
   StepSizeInTissue(Photon_Ptr, In_Ptr);
-  
+
   if(HitBoundary(Photon_Ptr, In_Ptr)) {
     Hop(Photon_Ptr);	/* move to boundary plane. */
     CrossOrNot(In_Ptr, Photon_Ptr, Out_Ptr);
@@ -715,6 +718,7 @@ void HopDropSpinInTissue(InputStruct  *  In_Ptr,
   else {
     Hop(Photon_Ptr);
     Drop(In_Ptr, Photon_Ptr, Out_Ptr);
+    printf("KKKKKKKKKKKKKKKKKKKKKKKKKK\n");
     Spin(In_Ptr->layerspecs[Photon_Ptr->layer].g, 
 		Photon_Ptr);
   }
@@ -731,9 +735,16 @@ void HopDropSpin(InputStruct  *  In_Ptr,
   if((In_Ptr->layerspecs[layer].mua == 0.0) 
   && (In_Ptr->layerspecs[layer].mus == 0.0)) 
 	/* glass layer. */
+  {
+    printf("LAYERSCCCCCCCCC\n");
     HopInGlass(In_Ptr, Photon_Ptr, Out_Ptr);
+  }
   else
-    HopDropSpinInTissue(In_Ptr, Photon_Ptr, Out_Ptr);
+    {
+          printf("LAYERSBBBBBBBBBBBBB\n");
+
+      HopDropSpinInTissue(In_Ptr, Photon_Ptr, Out_Ptr);
+    }
   
   if( Photon_Ptr->w < In_Ptr->Wth && !Photon_Ptr->dead) 
     Roulette(Photon_Ptr);
